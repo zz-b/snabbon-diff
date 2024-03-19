@@ -43,11 +43,18 @@ let vnode2 = h('section',{},[
 ])
 
 let vnode3 = h('section',{},'nihao')
+let vnode4 = h('section',{}, [
+  h('p',{},'p1'),
+  h('p',{},'p2'),
+  h('p',{},[h('span',{},'p-span')])
+])
 const container = document.getElementById('container')
 const button = document.getElementById('button')
 button?.addEventListener('click',function(){
   // patch(vnode, vnode2)
-  patch(vnode2, vnode3)
+  // patch(vnode2, vnode3)
+  patch(vnode3, vnode4)
 })
-patch(container, vnode2)
+// patch(container, vnode2)
+patch(container, vnode3)
 // console.log(vnode)
