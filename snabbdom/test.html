@@ -29,14 +29,17 @@
 <body class="body">
   <button id="button">点击</button>
   <button id="toggle">切换背景</button>
+  <button id="requestAnimation">requestAnimationFrame</button>
   <div id="loading">loading...</div>
   <div id="wrap">1</div>
+  <div id="wrap2">1</div>
   <script>
     var n = 1;
     let wrap = document.getElementById('wrap')
     let button = document.getElementById('button')
     let toggle = document.getElementById('toggle')
     let loading = document.getElementById('loading')
+    let requestAnimation = document.getElementById('requestAnimation')
     toggle.addEventListener("click", function () {
       document.body.classList.toggle('bg')
     })
@@ -51,7 +54,7 @@
           }
           console.timeEnd('a')
           loading.classList.toggle('show')
-          
+
           // console.time('b')
           // let obj = {n:1};
           // for (let index = 1; index < 1000000000; index++) {
@@ -63,7 +66,16 @@
         })
       })
     })
-
+   
+    requestAnimation.addEventListener("click",()=>{
+      let n = 1;
+      function render(){
+        if(n > 200) return;
+        wrap2.innerHTML = n++
+        requestAnimationFrame(render)
+      }
+      render()
+    })
   </script>
 </body>
 
