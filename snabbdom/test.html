@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .bg {
+      background-color: skyblue;
+    }
+
+    .body {
+      margin: 0;
+    }
+
+    #loading {
+      color: pink;
+      display: none;
+    }
+
+    #loading.show {
+      display: inherit;
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="body">
+  <button id="button">点击</button>
+  <button id="toggle">切换背景</button>
+  <div id="loading">loading...</div>
+  <div id="wrap">1</div>
+  <script>
+    var n = 1;
+    let wrap = document.getElementById('wrap')
+    let button = document.getElementById('button')
+    let toggle = document.getElementById('toggle')
+    let loading = document.getElementById('loading')
+    toggle.addEventListener("click", function () {
+      document.body.classList.toggle('bg')
+    })
+    button.addEventListener('click', function () {
+      loading.classList.toggle('show')
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          console.time('a')
+          for (let index = 1; index < 1000000; index++) {
+            const element = index
+            wrap.innerHTML = element
+          }
+          console.timeEnd('a')
+          loading.classList.toggle('show')
+          
+          // console.time('b')
+          // let obj = {n:1};
+          // for (let index = 1; index < 1000000000; index++) {
+          //   obj.n = index
+          // }
+          // wrap.innerHTML = n
+          // console.timeEnd('b')
+          // loading.classList.toggle('show')
+        })
+      })
+    })
+
+  </script>
+</body>
+
+</html>
